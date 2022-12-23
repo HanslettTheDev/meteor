@@ -74,7 +74,7 @@ class WSGIServer(object):
         # Construct environment dictionary using reques  data
         env = self.get_environ()
 
-        # Cal the application object to return an HTTP response body
+        # Call the application object to return an HTTP response body
         result = self.application(env, self.start_response)
 
         # construct a response and send back to the client
@@ -154,4 +154,7 @@ if __name__ == '__main__':
     application = getattr(module, application)
     httpd = make_server(SERVER_ADDRESS, application)
     print(f'WSGIServer: Serving HTTP on port {PORT} ...\n')
-    httpd.serve_forever()
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        sys.exit()
