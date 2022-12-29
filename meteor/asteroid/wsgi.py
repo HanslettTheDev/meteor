@@ -41,7 +41,6 @@ class WSGIServer(object):
         self.application = application
 
     def serve_forever(self):
-        count = 0
         listen_socket = self.listen_socket
         while True:
             try:
