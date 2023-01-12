@@ -20,15 +20,22 @@ class Router:
 
         url = ""
 
+        if self.route == "/" and self.request_path == "/":
+            return "/"
+
         for rts, reqp in zip(self.rts, self.reqpath):
             if rts != reqp:
                 if rts.startswith("{") and rts.endswith("}"):
                     url += "/" + reqp
                     self.vars.append(reqp)
                     continue
+                continue
             url += "/" + reqp
-        
+
         return url
+    
+    def check_var_types(self, data):
+        '''Checks the type of data'''
 
     def start(self):
         result = self.compare_routes()
